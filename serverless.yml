@@ -17,9 +17,3 @@ functions:
       - http:
           method: post
           path: recipe
-  hello:
-    handler: src/handler.hello
-    events:
-      - http:
-          method: get
-          path: hello
