@@ -1,5 +1,6 @@
 import { MongoService } from "../service/MongoService";
 import { graphql, buildSchema } from "graphql";
+import { Schema } from "../graphql/schema";
 
 export class MongoMicrosrv {
 
@@ -13,20 +14,7 @@ export class MongoMicrosrv {
         context.callbackWaitsForEmptyEventLoop = false;
         await this.mongoService.connect();
 
-        var schema = buildSchema(`
-            type Query {
-                course(id: Int!): Course
-                courses(topic: String): [Course]
-            },
-            type Course {
-                id: Int
-                title: String
-                author: String
-                description: String
-                topic: String
-                url: String
-            }
-        `);
+        var schema = buildSchema(Schema.schema);
 
         var coursesData = [
             {
@@ -56,19 +44,19 @@ export class MongoMicrosrv {
         ]
 
         var getCourse = function(args) { 
-        var id = args.id;
-        return coursesData.filter(course => {
-            return course.id == id;
-        })[0];
+            var id = args.id;
+            return coursesData.filter(course => {
+                return course.id == id;
+            })[0];
         }
 
         var getCourses = function(args) {
-        if (args.topic) {
-            var topic = args.topic;
-            return coursesData.filter(course => course.topic === topic);
-        } else {
-            return coursesData;
-        }
+            if (args.topic) {
+                var topic = args.topic;
+                return coursesData.filter(course => course.topic === topic);
+            } else {
+                return coursesData;
+            }
         }
 
 

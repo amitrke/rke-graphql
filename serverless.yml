@@ -11,9 +11,9 @@ provider:
   runtime: nodejs8.10
 
 functions:
-  recipe:
+  graphql:
     handler: src/handler.recipegql
     events:
       - http:
           method: post
-          path: recipe
+          path: graphql
