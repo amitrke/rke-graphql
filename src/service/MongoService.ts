@@ -4,6 +4,7 @@ export class MongoService {
     private isConnected;
 
     public connect = async() => {
+        
         if (this.isConnected) {
             console.log('Using existing database connection');
             return;
@@ -11,10 +12,10 @@ export class MongoService {
 
         console.log('Using new database connection');
         try{
-            let resp:Mongoose = await connect((process.env.DB));
-            console.log(JSON.stringify(resp));
-            this.isConnected = resp.connection.readyState;
-            return resp;
+            let mongoose:Mongoose = await connect((process.env.DB));
+            mongoose.set('debug', true);
+            this.isConnected = mongoose.connection.readyState;
+            return mongoose;
         }
         catch(err){
             console.error(JSON.stringify(err));

@@ -12,8 +12,20 @@ provider:
 
 functions:
   graphql:
-    handler: src/handler.recipegql
+    # this is formatted as <FILENAME>.<HANDLER>
+    handler: src/handler.graphqlHandler
     events:
-      - http:
-          method: post
-          path: graphql
+    - http:
+        path: graphql
+        method: post
+        cors: true
+    - http:
+        path: graphql
+        method: get
+        cors: true
+  # graphql:
+  #   handler: src/handler.recipegql
+  #   events:
+  #     - http:
+  #         method: post
+  #         path: graphql
