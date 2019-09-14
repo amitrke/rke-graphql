@@ -1,7 +1,8 @@
-import { Resolver, Query, Arg } from "type-graphql";
+import { Resolver, Query, Arg, ArgsType, Args } from "type-graphql";
 import { Posts } from "../models/post";
 import { MongoService } from "../service/MongoService";
 import { Model } from "mongoose";
+import { GetPostsArgs } from "../graphql/getpostargs";
 
 @Resolver(Posts)
 export class PostResolver {
@@ -20,6 +21,18 @@ export class PostResolver {
 
         await this.mongoService.connect();
         const dbResult:Posts = await this.postModel.findById(id);
+        console.dir(dbResult);
+        return dbResult;
+    }
+
+    @Query(returns => [Posts])
+    async getPosts(@Args() {author, status, webid}:GetPostsArgs) {
+        await this.mongoService.connect();
+        let filter = {};
+        if (author) filter['author'] = author;
+        if (status) filter['status'] = status;
+        if (webid) filter['webid'] = webid;
+        const dbResult:Posts[] = await this.postModel.find(filter);
         console.dir(dbResult);
         return dbResult;
     }
