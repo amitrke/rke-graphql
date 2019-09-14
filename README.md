@@ -1,6 +1,10 @@
 # rke-graphql
 Roorkee.org GraphQL API
 
+[![Actions Status](https://github.com/amitrke/rke-graphql/workflows/Node%20CI/badge.svg)](https://github.com/amitrke/rke-graphql/actions)
+[![devDependencies Status](https://david-dm.org/amitrke/rke-graphql/dev-status.svg)](https://david-dm.org/amitrke/rke-graphql?type=dev)
+[![Dependencies Status](https://david-dm.org/amitrke/rke-graphql/status.svg)](https://david-dm.org/amitrke/rke-graphql)
+
 ### Local
 
 - clone
@@ -13,7 +17,7 @@ Roorkee.org GraphQL API
 
 #### Sample request
 
-{code}
+```
 {
     getPost(id: "5cf9918be863421a13deecc3"){
         title,
@@ -21,4 +25,4 @@ Roorkee.org GraphQL API
         description
     }
 }
-{code}
+```
