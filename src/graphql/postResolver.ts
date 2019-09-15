@@ -17,11 +17,8 @@ export class PostResolver {
 
     @Query(returns => Posts)
     async getPost(@Arg("id") id: string) {
-        console.log(`In resolver, id=${id}`);
-
         await this.mongoService.connect();
         const dbResult:Posts = await this.postModel.findById(id);
-        console.dir(dbResult);
         return dbResult;
     }
 
@@ -33,7 +30,6 @@ export class PostResolver {
         if (status) filter['status'] = status;
         if (webid) filter['webid'] = webid;
         const dbResult:Posts[] = await this.postModel.find(filter);
-        console.dir(dbResult);
         return dbResult;
     }
 }
