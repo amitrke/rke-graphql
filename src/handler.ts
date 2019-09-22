@@ -14,4 +14,4 @@ console.log(`GLOBAL: ${JSON.stringify((<any>global).cachedSchema)}`);
 const schema = (<any>global).cachedSchema;
 
 const server = new ApolloServer({ schema });
-exports.graphqlHandler = server.createHandler();
+exports.graphqlHandler = server.createHandler({cors: {origin: '*', credentials: true}});
