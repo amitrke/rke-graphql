@@ -26,3 +26,11 @@ Roorkee.org GraphQL API
     }
 }
 ```
+
+```
+mutation {
+    uploadFile(fileData:"abcdef"){
+        fileBase64Data
+    }
+}
+```

@@ -3,12 +3,13 @@ import { ApolloServer } from "apollo-server-lambda";
 import { buildSchemaSync } from "type-graphql";
 import { PostResolver } from "./graphql/postResolver";
 import { UserResolver } from "./graphql/userResolver";
+import { FileResolver } from "./graphql/fileResolver";
 
 console.log(`GLOBAL: ${JSON.stringify((<any>global).cachedSchema)}`);
 (<any>global).cachedSchema =
     (<any>global).cachedSchema ||
     buildSchemaSync({
-        resolvers: [ PostResolver, UserResolver ]
+        resolvers: [ PostResolver, UserResolver, FileResolver ]
     });
 
 const schema = (<any>global).cachedSchema;
