@@ -6,4 +6,15 @@ export class S3Files {
     @Field()
     fileBase64Data: string;
 
+    @Field()
+    ETag: string;
+
+    @Field()
+    Key: string;
+
+    @Field()
+    LastModified: Date;
+
+    @Field()
+    Size: number;
 }
