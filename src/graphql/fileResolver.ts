@@ -14,8 +14,7 @@ export class FileResolver {
 
     @Query(returns => [S3Files])
     async getFilesList(@Arg("user") user: string, @Arg("env") env: string, @Ctx() context: Context) {
-        console.log("context -->");
-        console.dir(context);
+        console.log(JSON.stringify(context));
         var folder = `${env}/up/usr/${user}/`;
         var params = { 
             Delimiter: '/',
@@ -35,6 +34,25 @@ export class FileResolver {
         return files;
     }
     
+    @Mutation(returns => S3Files)
+    async deleteFile(@Arg("id") fileId: string) {
+        let obj = new S3Files();
+        var params = {
+            Key: fileId,
+            Bucket: 'www-static.aws.roorkee.org'
+        };
+        
+        try{
+            var resp = await this.s3.deleteObject(params).promise();
+            obj.deleteMarker = resp.DeleteMarker;
+            return JSON.stringify(obj);
+        }
+        catch(err){
+            console.log(JSON.stringify(err));
+            return err;
+        }
+    }
+
     @Mutation(returns => S3Files)
     async uploadFile(@Arg("fileData") fileData: string, @Arg("name") name: string) {
         let obj = new S3Files();

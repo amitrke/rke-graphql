@@ -17,4 +17,7 @@ export class S3Files {
 
     @Field()
     Size: number;
+
+    @Field()
+    deleteMarker: boolean;
 }
