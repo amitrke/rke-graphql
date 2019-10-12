@@ -1,6 +1,7 @@
 import { S3 } from 'aws-sdk';
-import { Resolver, Mutation, Arg, Query } from 'type-graphql';
+import { Resolver, Mutation, Arg, Query, Ctx } from 'type-graphql';
 import { S3Files } from '../models/s3Files';
+import { Context } from 'apollo-server-core';
 
 @Resolver(S3Files)
 export class FileResolver {
@@ -12,7 +13,9 @@ export class FileResolver {
     }
 
     @Query(returns => [S3Files])
-    async getFilesList(@Arg("user") user: string, @Arg("env") env: string) {
+    async getFilesList(@Arg("user") user: string, @Arg("env") env: string, @Ctx() context: Context) {
+        console.log("context -->");
+        console.dir(context);
         var folder = `${env}/up/usr/${user}/`;
         var params = { 
             Delimiter: '/',
