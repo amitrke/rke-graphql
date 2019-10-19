@@ -1,17 +1,17 @@
 import { Resolver, Query, Arg, ArgsType, Args } from "type-graphql";
 import { Users } from "../models/user";
 import { MongoService } from "../service/MongoService";
-import { Model } from "mongoose";
+import { getModelForClass } from "@typegoose/typegoose";
 
 @Resolver(Users)
 export class UserResolver {
 
     private mongoService: MongoService;
-    private userModel: Model<InstanceType<Users>>;
+    private userModel: any;
 
     constructor(){
         this.mongoService = new MongoService();
-        this.userModel  = new Users().getModelForClass(Users);
+        this.userModel  = getModelForClass(Users);
     }
 
     @Query(returns => Users)

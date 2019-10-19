@@ -1,5 +1,5 @@
 import { ObjectType, Field } from "type-graphql";
-import { prop, Typegoose } from '@hasezoey/typegoose';
+import { prop, Typegoose } from '@typegoose/typegoose';
 
 @ObjectType()
 export class Users extends Typegoose {

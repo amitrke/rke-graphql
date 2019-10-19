@@ -63,3 +63,4 @@ yarn.lock
 .serverless
 .vscode
 .DS_store
+lib/

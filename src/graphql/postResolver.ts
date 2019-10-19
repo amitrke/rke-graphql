@@ -1,18 +1,18 @@
-import { Resolver, Query, Arg, ArgsType, Args } from "type-graphql";
+import { Resolver, Query, Arg, Args } from "type-graphql";
 import { Posts } from "../models/post";
 import { MongoService } from "../service/MongoService";
-import { Model } from "mongoose";
 import { GetPostsArgs } from "../graphql/getpostargs";
+import { getModelForClass } from "@typegoose/typegoose";
 
 @Resolver(Posts)
 export class PostResolver {
 
     private mongoService: MongoService;
-    private postModel: Model<InstanceType<Posts>>;
+    private postModel: any;
 
     constructor(){
         this.mongoService = new MongoService();
-        this.postModel  = new Posts().getModelForClass(Posts);
+        this.postModel = getModelForClass(Posts);
     }
 
     @Query(returns => Posts)

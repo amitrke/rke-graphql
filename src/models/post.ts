@@ -1,33 +1,33 @@
 import { ObjectType, Field } from "type-graphql";
-import { prop, Typegoose } from '@hasezoey/typegoose';
+import { prop, Typegoose } from '@typegoose/typegoose';
 
 @ObjectType()
 export class Posts extends Typegoose {
 
     @Field()
-    id: string;
+    id!: string;
 
     @Field() @prop()
-    title: string;
+    title!: string;
     
     @Field() @prop()
-    description: string;
+    description!: string;
 
     @Field() @prop()
-    fulltext: string;
+    fulltext!: string;
 
     @Field(type => [String]) @prop()
-    images: string[];
+    images!: string[];
     
     @Field() @prop()
-    author: string;
+    author!: string;
     
     @Field() @prop()
-    created: Date;
+    created!: Date;
     
     @Field() @prop()
-    status: string;
+    status!: string;
     
     @Field() @prop()
-    webid: string;
+    webid!: string;
 }

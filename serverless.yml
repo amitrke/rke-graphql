@@ -1,25 +1,21 @@
 service:
   name: rke-graphql
 
-# Add the serverless-webpack plugin
 plugins:
   - serverless-plugin-typescript
   - serverless-offline
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs10.x
 
 functions:
   graphql:
-    handler: src/handler.graphqlHandler
+    handler: src/handler.gqlHandler
     events:
     - http:
         path: graphql
         method: post
-    - http:
-        path: graphql
-        method: get
   options:
     handler: src/handler.optionsHandler
     events:
