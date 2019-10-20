@@ -5,6 +5,11 @@ plugins:
   - serverless-plugin-typescript
   - serverless-offline
 
+package:
+  include:
+    - private.txt
+    - pub.txt
+
 provider:
   name: aws
   runtime: nodejs10.x
@@ -15,6 +20,12 @@ functions:
     events:
     - http:
         path: graphql
+        method: post
+  login:
+    handler: src/handler.authHandler
+    events:
+    - http:
+        path: login
         method: post
   options:
     handler: src/handler.optionsHandler
