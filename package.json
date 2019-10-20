@@ -22,7 +22,7 @@
     "serverless-plugin-typescript": "^1.1.9",
     "ts-node": "^8.4.1",
     "typescript": "^3.2.4",
-    "generate-rsa-keypair": "^0.2.1",
+    "generate-rsa-keypair": "^0.2.1"
   },
   "author": "Amit Kumar",
   "license": "MIT",
