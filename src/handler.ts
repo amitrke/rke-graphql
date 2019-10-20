@@ -9,4 +9,5 @@ const authLmda = new AuthLmda();
 
 exports.optionsHandler = optLmda.handler;
 exports.gqlHandler = gqlLmda.handler;
-exports.authHandler = authLmda.handler;
+exports.loginHandler = authLmda.handler;
+exports.authHandler = authLmda.authHandler;

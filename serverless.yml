@@ -21,8 +21,9 @@ functions:
     - http:
         path: graphql
         method: post
+        authorizer: auth
   login:
-    handler: src/handler.authHandler
+    handler: src/handler.loginHandler
     events:
     - http:
         path: login
@@ -33,3 +34,5 @@ functions:
     - http:
         path: graphql
         method: options
+  auth:
+    handler: src/handler.authHandler
