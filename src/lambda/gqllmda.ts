@@ -1,6 +1,6 @@
 import { APIGatewayEvent } from "aws-lambda";
 import { GraphQLSchema, graphql } from "graphql";
-import { buildSchemaSync } from "type-graphql";
+import { buildSchema } from "type-graphql";
 import { PostResolver } from "../graphql/postResolver";
 import { UserResolver } from "../graphql/userResolver";
 import { FileResolver } from "../graphql/fileResolver";
@@ -10,16 +10,12 @@ export class GqlLambda {
 
     private schema: GraphQLSchema;
 
+    constructor(schema: GraphQLSchema){
+        this.schema = schema;
+    }
+
     public handler = async (event: APIGatewayEvent) => {
         console.log(JSON.stringify(event));
-        if (!this.schema){
-            (<any>global).cachedSchema =
-                (<any>global).cachedSchema ||
-                buildSchemaSync({
-                    resolvers: [ PostResolver, UserResolver, FileResolver ]
-                });
-            this.schema = (<any>global).cachedSchema;
-        }
 
         if (event.httpMethod === "POST" && event.body){
             const requestBody = JSON.parse(event.body);
