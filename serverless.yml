@@ -21,6 +21,7 @@ functions:
     - http:
         path: graphql
         method: post
+        cors: true
         authorizer: auth
   login:
     handler: src/handler.loginHandler
@@ -28,17 +29,6 @@ functions:
     - http:
         path: login
         method: post
-  loginOptions:
-    handler: src/handler.optionsHandler
-    events:
-    - http:
-        path: login
-        method: options
-  options:
-    handler: src/handler.optionsHandler
-    events:
-    - http:
-        path: graphql
-        method: options
+        cors: true
   auth:
     handler: src/handler.authHandler
