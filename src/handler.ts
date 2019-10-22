@@ -10,8 +10,7 @@ import { buildSchemaSync } from "type-graphql";
 const optLmda = new OptLmda();
 
 (global as any).schema = (global as any).schema || buildSchemaSync({
-    resolvers: [ PostResolver, UserResolver, FileResolver ],
-    emitSchemaFile: true
+    resolvers: [ PostResolver, UserResolver, FileResolver ]
 });
 
 const gqlLmda = new GqlLambda((global as any).schema);
