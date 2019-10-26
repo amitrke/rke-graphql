@@ -60,7 +60,8 @@ export class AuthLmda {
     googleAuthRes: any
   ) => {
     let webid = "unknown";
-    switch (event.headers.Origin) {
+    let orign = event.headers.origin ? event.headers.origin : event.headers.Origin;
+    switch (orign) {
       case "http://localhost:4200":
       case "https://www-dev.aws.roorkee.org":
         webid = "rke-dev";
