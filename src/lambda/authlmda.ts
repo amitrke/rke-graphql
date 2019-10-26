@@ -62,14 +62,15 @@ export class AuthLmda {
     let webid = "unknown";
     switch (event.headers.Origin) {
       case "http://localhost:4200":
-      case "http://www-dev.aws.roorkee.org":
+      case "https://www-dev.aws.roorkee.org":
         webid = "rke-dev";
         break;
-      case "http://www.aws.roorkee.org":
+      case "https://www.aws.roorkee.org":
         webid = "rke-prod";
         break;
       default:
-        console.log(`Unknown origin ${event.headers.Origin}`);
+        console.error(`Unknown origin ${event.headers.Origin}`);
+        throw new Error("Unknown origin");
     }
     await this.mongoService.connect();
     const dbResult: Users[] = await this.userModel.find({
