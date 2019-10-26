@@ -85,6 +85,7 @@ export class AuthLmda {
         }
       user = dbResult[0].id;
     } else {
+      console.log(`user not found, creating one in DB now - ${googleAuthRes.data.email}, webid=${webid}`)
       user = this.createUser(googleAuthRes.data, webid);
     }
 
