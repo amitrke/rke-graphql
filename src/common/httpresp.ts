@@ -5,7 +5,7 @@ export class HttpResp {
         return {
             statusCode: statusCd,
             headers: {
-                "access-control-allow-headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent",
+                "access-control-allow-headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,webid",
                 "access-control-allow-methods": "OPTIONS,GET,POST",
                 "access-control-allow-origin": "*",
                 "access-control-allow-credentials": "false"
