@@ -1,11 +1,17 @@
 import { ObjectType, Field } from "type-graphql";
 import { prop, Typegoose } from '@typegoose/typegoose';
+import { S3Files } from "./s3Files";
+import { Posts } from "./post";
+import { ObjectId } from "bson";
 
 @ObjectType()
 export class Users extends Typegoose {
 
     @Field()
     id: string;
+
+    @prop()
+    _id: ObjectId;
 
     @Field() @prop()
     name: string;
@@ -24,6 +30,12 @@ export class Users extends Typegoose {
 
     @Field(type => [Social]) @prop()
     social: Social[];
+
+    @Field(type => [S3Files])
+    files: [S3Files];
+
+    @Field(type => [Posts])
+    posts: [Posts];
 }
 
 @ObjectType()
