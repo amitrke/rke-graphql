@@ -21,7 +21,7 @@ export class AuthLmda {
    * Login Lambda
    */
   public handler = async (event: APIGatewayEvent) => {
-    //console.log(JSON.stringify(event));
+    console.log(JSON.stringify(event));
 
     if (!this.privateKey) {
       const makeKey = pem => JWK.asKey(pem, "pem");
