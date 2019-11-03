@@ -10,7 +10,6 @@ export class Users extends Typegoose {
     @Field()
     id: string;
 
-    @prop()
     _id: ObjectId;
 
     @Field() @prop()
