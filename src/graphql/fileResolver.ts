@@ -66,7 +66,8 @@ export class FileResolver {
             Key: name, 
             Body: buf,
             ContentEncoding: "base64",
-            Bucket: 'www-static.aws.roorkee.org'
+            Bucket: 'www-static.aws.roorkee.org',
+            region: 'us-east-1'
         };
         
         try{
@@ -74,7 +75,10 @@ export class FileResolver {
             return resp;
         }
         catch(err){
-            console.log(JSON.stringify(err));
+            console.log(`Error occured while s3 putObject operation`, {
+                "errorDetails": JSON.stringify(err),
+                "inputParams": JSON.stringify(params)
+            });
         }
 
         return obj;
