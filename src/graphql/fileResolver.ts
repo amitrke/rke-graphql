@@ -42,7 +42,7 @@ export class FileResolver {
         
         try{
             var resp = await this.s3.deleteObject(params).promise();
-            obj.deleteMarker = resp.DeleteMarker;
+            obj.deleteMarker = true;
             return JSON.stringify(obj);
         }
         catch(err){
